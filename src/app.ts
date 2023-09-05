@@ -54,7 +54,7 @@ function printVersionDetail(fileVersion: any) {
 async function showHistory(bucketName: string) {
   try {
     await b2.authorize(); // must authorize first (authorization lasts 24 hrs)
-    let currentFileName, currentHidden;
+    let currentFileName;
     for await (const fileVersion of listFileVersions(bucketName)) {
       if (fileVersion.fileName !== currentFileName) {
         // First version with a given name is the current version - don't
