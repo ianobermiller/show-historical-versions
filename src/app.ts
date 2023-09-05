@@ -3,6 +3,8 @@ import 'dotenv/config'
 
 import B2 from 'backblaze-b2';
 
+const BYTES_IN_GiB = 1024 * 1024 * 1024;
+
 
 // This asynchronous generator function gets 1000 file versions at a time, 
 // yields them one at a time.
@@ -54,6 +56,7 @@ function printVersionDetail(fileVersion: any) {
 async function showHistory(bucketName: string) {
   try {
     await b2.authorize(); // must authorize first (authorization lasts 24 hrs)
+    let totalSize = 0;
     let currentFileName;
     for await (const fileVersion of listFileVersions(bucketName)) {
       if (fileVersion.fileName !== currentFileName) {
@@ -62,8 +65,10 @@ async function showHistory(bucketName: string) {
         currentFileName = fileVersion.fileName;
       } else {
         printVersionDetail(fileVersion);
+        totalSize += fileVersion.contentLength;
       }
     }
+    console.log(`\nTotal storage consumed: ${(totalSize / BYTES_IN_GiB).toFixed(3)} GiB`)
   } catch (err) {
     console.log('Error getting bucket:', err);
   }
