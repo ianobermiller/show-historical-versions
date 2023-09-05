@@ -5,7 +5,31 @@ This Node.js app, written in TypeScript, lists all non-current file versions in 
 ## Prerequisites
 * [Node.js](https://nodejs.org/)
 
-## Configuring the App
+## Install Dependencies
+
+```console
+$ npm install
+
+added 11 packages, and audited 12 packages in 808ms
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+## Build the App
+
+Since the app is written in TypeScript, you must compile the source to JavaScript before you run the app:
+
+```console
+$ npm run build
+
+> show_history@1.0.0 build
+> tsc -p .
+```
+
+## Configure the App
 
 The app expects to find B2 credentials in environment variables or in a `.env` file thus:
 
@@ -21,7 +45,7 @@ $ cp .env-template .env
 $ vi .env
 ```
 
-## Running the App
+## Run the App
 
 The app accepts a Backblaze B2 Bucket name as its only argument:
 

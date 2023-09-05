@@ -1,11 +1,12 @@
 {
-  "name": "show_history",
+  "name": "show_historical_versions",
   "version": "1.0.0",
   "description": "Show non-current versions of files in a Backblaze B2 bucket",
   "author": "evangelism@backblaze.com",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node dist/app.js"
+    "build": "tsc -p .",
+    "start": "node dist/app.js"
   },
   "dependencies": {
     "backblaze-b2": "^1.7.0",
